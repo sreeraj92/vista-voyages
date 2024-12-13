@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <title>Ecoland - Registration Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/open-iconic-bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'css/ionicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'css/icomoon.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- Include Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        body {
+            background-image: url('{% static "images/tree.jpg" %}'); /* Ensure the correct path to the image */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .registration {
+            display: flex;
+            justify-content: center; /* Center the registration box horizontally */
+            align-items: center; /* Center the registration box vertically */
+            height: 100vh; /* Full viewport height */
+            flex-direction: column; /* Align items vertically */
+        }
+
+        .form-container {
+            max-width: 400px; /* Limit the width of the registration container */
+            text-align: center; /* Center align the form */
+            background: rgba(255, 255, 255, 1.3); /* Background gradient */
+            padding: 40px; /* Padding for content */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: none; /* Remove shadow */
+        }
+
+        .form-group {
+            position: relative; /* Set position to relative for absolute children */
+            margin-bottom: 20px; /* Add space between fields */
+        }
+
+        .input-with-icon {
+            position: relative; /* Set position to relative to contain absolute positioned elements */
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            padding-right: 40px; /* Add space for the icon */
+            padding-left: 10px; /* Padding to align text */
+            width: 100%; /* Full width */
+            box-sizing: border-box; /* Box model to include padding */
+        }
+
+        .user-icon,
+        .email-icon,
+        .toggle-password,
+        .toggle-confirm-password {
+            position: absolute;
+            right: 10px; /* Ensure icon is positioned to the right */
+            top: 50%; /* Center vertically */
+            transform: translateY(-50%); /* Adjust to vertically center */
+            color: #aaa; /* Light gray color for the icon */
+            cursor: pointer; /* Pointer cursor for better UX */
+        }
+
+        .registration .btn {
+            width: 100%; /* Full width for the button */
+        }
+
+        .register-link {
+            margin-top: 20px;
+            display: block; /* Make it a block element to center align */
+            color: black; /* Change text color to black */
+            text-decoration: underline; /* Underline the registration link */
+        }
+
+        .error-message {
+            color: red; /* Red color for error message */
+            margin: 10px 0; /* Space around the error message */
+            display: none; /* Hidden by default */
+        }
+
+        /* Custom styles for checkbox */
+        input[type="checkbox"] {
+            accent-color: black; /* Set checkbox color to black */
+            margin-right: 10px; /* Add space between checkbox and label */
+            transform: scale(1.2); /* Optional: Scale the checkbox */
+        }
+
+        .checkbox-label {
+            text-align: left; /* Align the label text to the left */
+            display: inline-block; /* Ensure label is inline with checkbox */
+            color: black; /* Change text color to black */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="registration">
+        <div class="form-container">
+            <form  class="bg-light contact-form" onsubmit="return confirmRegistration();" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {%for msg in messages %}
+                      <h4 style="color:red">{{msg}}</h4>
+                      {%endfor%}
+                <div class="form-group input-with-icon">
+                    <input type="text" class="form-control" name="Username" placeholder="Username" required>
+                    <i class="fas fa-user user-icon" aria-hidden="true"></i>
+                </div>
+                <div class="form-group input-with-icon">
+                    <input type="email" class="form-control" name="Email" placeholder="Email" required>
+                    <i class="fas fa-envelope email-icon" aria-hidden="true"></i>
+                </div>
+                <div class="form-group input-with-icon">
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+                    <i class="fas fa-eye toggle-password" onclick="togglePassword()" aria-hidden="true"></i>
+                </div>
+                <div class="form-group input-with-icon">
+                    <input type="password" id="confirm-password" name="confirm_password" class="form-control" placeholder="Confirm Password" required>
+                    <i class="fas fa-eye toggle-confirm-password" onclick="toggleConfirmPassword()" aria-hidden="true"></i>
+                </div>
+                <div class="error-message" id="password-error">Passwords do not match!</div> <!-- Error message -->
+                <div class="form-group">
+                    <input type="submit" value="Register" class="btn btn-primary py-3 px-5">
+                </div>
+                <div class="form-group" style="text-align: left;">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="terms"> I agree to the terms and conditions
+                    </label>
+                </div>
+                <a href="/login" class="register-link">Already have an account? Log In</a>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const togglePasswordIcon = document.querySelector('.toggle-password');
+
+            // Show password
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                togglePasswordIcon.classList.remove('fa-eye');
+                togglePasswordIcon.classList.add('fa-eye-slash');
+
+                // Hide the password again after 1 second
+                setTimeout(() => {
+                    passwordInput.type = "password";
+                    togglePasswordIcon.classList.remove('fa-eye-slash');
+                    togglePasswordIcon.classList.add('fa-eye');
+                }, 1000);
+            } else {
+                // If already visible, hide immediately
+                passwordInput.type = "password";
+                togglePasswordIcon.classList.remove('fa-eye-slash');
+                togglePasswordIcon.classList.add('fa-eye');
+            }
+        }
+
+        function toggleConfirmPassword() {
+            const confirmPasswordInput = document.getElementById('confirm-password');
+            const toggleConfirmPasswordIcon = document.querySelector('.toggle-confirm-password');
+
+            // Show confirm password
+            if (confirmPasswordInput.type === "password") {
+                confirmPasswordInput.type = "text";
+                toggleConfirmPasswordIcon.classList.remove('fa-eye');
+                toggleConfirmPasswordIcon.classList.add('fa-eye-slash');
+
+                // Hide the confirm password again after 1 second
+                setTimeout(() => {
+                    confirmPasswordInput.type = "password";
+                    toggleConfirmPasswordIcon.classList.remove('fa-eye-slash');
+                    toggleConfirmPasswordIcon.classList.add('fa-eye');
+                }, 1000);
+            } else {
+                // If already visible, hide immediately
+                confirmPasswordInput.type = "password";
+                toggleConfirmPasswordIcon.classList.remove('fa-eye-slash');
+                toggleConfirmPasswordIcon.classList.add('fa-eye');
+            } 
+        }
+
+        function confirmRegistration() {
+            const termsAccepted = document.getElementById('terms').checked;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const errorMessage = document.getElementById('password-error');
+
+            // Reset error message display
+            errorMessage.style.display = 'none';
+
+            if (!termsAccepted) {
+                alert("You must agree to the terms and conditions before registering.");
+                return false; // Prevent form submission
+            }
+
+            if (password !== confirmPassword) {
+                errorMessage.style.display = 'block'; // Show error message
+                return false; // Prevent form submission
+            }
+            return true; // Proceed with form submission
+        }
+    </script>
+</body>
+
+</html>
