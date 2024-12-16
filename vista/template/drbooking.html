@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <title>Ecoland - Booking Details</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <style>
+        body {
+            background-image: url('{% static "images/tree.jpg" %}');
+            background-size: cover;
+            background-position: center;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .booking-details {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .table-container {
+            max-width: 1000px;
+            width: 100%;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            height: 80vh;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+
+        .btn {
+            padding: 5px 10px;
+            font-size: 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: none;
+        }
+
+        .btn-accept {
+            color: #2d862d; /* Green text */
+        }
+
+        .btn-deny {
+            color: #b32424; /* Red text */
+        }
+
+        .status-accepted {
+            color: #2d862d; /* Green for Accepted */
+            font-weight: bold;
+        }
+
+        .status-denied {
+            color: #b32424; /* Red for Denied */
+            font-weight: bold;
+        }
+
+        .btn-status {
+            color: #b3b300; /* Yellow text */
+        }
+
+        .btn-completed {
+            color: #2d862d; /* Green for Completed */
+        }
+
+        .work-status.denied {
+            position: relative;
+            padding-top: 10px;
+        }
+
+        .work-status.denied::before {
+            content: ''; /* Create a pseudo-element for the line */
+            position: absolute; /* Position the line absolutely */
+            top: 50%; /* Center it vertically */
+            left: 50%; /* Center it horizontally */
+            transform: translate(-50%, -50%); /* Offset to truly center it */
+            width: 50%; /* Adjust the width of the red line */
+            height: 2px; /* Make the line thin */
+            background-color: #b32424; /* Red color */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="booking-details">
+        <div class="table-container">
+            <h2>Booking Details</h2>
+
+            <!-- Booking Table -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Booking ID</th>
+                        <th>Username</th>
+                        <th>Location</th>
+                        <th>Date</th>
+                        <th>Destination</th>
+                        <th>Address</th>
+                        <th>Action</th>
+                        <th>Work Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Example row -->
+                    <tr>
+                        <td>001</td>
+                        <td>John Doe</td>
+                        <td>Location 1</td>
+                        <td>2024-12-15</td>
+                        <td>Mountain Trip</td>
+                        <td>123 Green Valley, NY</td>
+                        <td class="action-buttons">
+                            <button class="btn btn-accept" onclick="acceptAction(this)">Accept</button>
+                            <button class="btn btn-deny" onclick="denyAction(this)">Deny</button>
+                        </td>
+                        <td class="work-status">
+                            <!-- Work Status will be dynamically added here -->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>002</td>
+                        <td>Jane Smith</td>
+                        <td>Location 2</td>
+                        <td>2024-12-20</td>
+                        <td>Beach Resort</td>
+                        <td>456 Ocean Road, FL</td>
+                        <td class="action-buttons">
+                            <button class="btn btn-accept" onclick="acceptAction(this)">Accept</button>
+                            <button class="btn btn-deny" onclick="denyAction(this)">Deny</button>
+                        </td>
+                        <td class="work-status">
+                            <!-- Work Status will be dynamically added here -->
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Handle "Accept" action
+        function acceptAction(button) {
+            const row = button.closest("tr");
+            const actionCell = row.querySelector(".action-buttons");
+            const workStatusCell = row.querySelector(".work-status");
+
+            // Show "Accepted" text in the Action cell
+            actionCell.innerHTML = `<span class="status-accepted">Accepted</span>`;
+
+            // Add the "Pending" status button in the Work Status cell
+            workStatusCell.innerHTML = `
+                <button class="btn btn-status" onclick="toggleWorkStatus(this)">Pending</button>
+            `;
+            workStatusCell.classList.remove("denied"); // Remove red line if present
+        }
+
+        // Handle "Deny" action
+        function denyAction(button) {
+            const row = button.closest("tr");
+            const actionCell = row.querySelector(".action-buttons");
+            const workStatusCell = row.querySelector(".work-status");
+
+            // Show "Denied" text in the Action cell
+            actionCell.innerHTML = `<span class="status-denied">Denied</span>`;
+
+            // Add a red line in the Work Status cell
+            workStatusCell.innerHTML = ""; // Clear content
+            workStatusCell.classList.add("denied");
+        }
+
+        // Toggle Work Status between "Pending" and "Completed"
+        function toggleWorkStatus(button) {
+            if (button.innerHTML === "Pending") {
+                button.innerHTML = "Completed";
+                button.classList.remove("btn-status");
+                button.classList.add("btn-completed");
+            }
+            // If the button text is "Completed", don't allow any changes
+        }
+    </script>
+</body>
+
+</html>

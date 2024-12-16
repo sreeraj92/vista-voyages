@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cab Details Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cab Details Form</h1>
+    <form action="#" method="post" enctype="multipart/form-data">
+        <label for="cabType">Cab Type:</label>
+        <input type="text" id="cabType" name="cabType" required>
+
+        <label for="makeModel">Make &amp; Model:</label>
+        <input type="text" id="makeModel" name="makeModel" required>
+
+        <label for="registrationNumber">Registration Number:</label>
+        <input type="text" id="registrationNumber" name="registrationNumber" required>
+
+        <label for="color">Color:</label>
+        <input type="text" id="color" name="color" required>
+
+        <label for="photo">Vehicle image:</label>
+        <input type="file" id="photo" name="photo" accept="image/*" required>
+
+        <label for="driverName">Driver Name:</label>
+        <input type="text" id="driverName" name="driverName" required>
+
+        <label for="driverContact">Driver Contact:</label>
+        <input type="tel" id="driverContact" name="driverContact" required>
+
+        <label for="seatingCapacity">Seating Capacity:</label>
+        <input type="number" id="seatingCapacity" name="seatingCapacity" required>
+
+        <label for="baseFare">Base Fare:</label>
+        <input type="number" id="baseFare" name="baseFare" step="0.01" required>
+
+        <label for="farePerKm">Fare per Kilometer:</label>
+        <input type="number" id="farePerKm" name="farePerKm" step="0.01" required>
+
+        <label for="safetyFeatures">Safety Features:</label>
+        <textarea id="safetyFeatures" name="safetyFeatures" rows="4"></textarea>
+
+        <label for="availability">Availability:</label>
+        <select id="availability" name="availability" required>
+            <option value="">Select</option>
+            <option value="Available">Available</option>
+            <option value="Not Available">Not Available</option>
+        </select>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
