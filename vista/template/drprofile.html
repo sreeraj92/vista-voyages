@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,7 +9,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #fde4ff; /* Updated lilac background */
+            background-color: #fde4ff;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             overflow: hidden;
@@ -17,141 +17,141 @@
         
         .profile-card {
             background-color: white;
-            border-radius: 15px;
+            border-radius: 30px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            padding: 25px;
+            padding: 30px;
             width: 350px;
             text-align: center;
-            transition: transform 0.3s, background-color 0.5s;
             position: relative;
             overflow: hidden;
-        }
-        
-        .profile-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent);
-            transform: rotate(45deg);
-            transition: 1s;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
-        .profile-card:hover::before {
-            top: 0;
-            left: 0;
-        }
-        
+        /* Hover effect: Change color and slightly enlarge the card */
         .profile-card:hover {
-            transform: scale(1.07);
-            background-color: #f0ebfc;
+            background-color: #e6d7f7; /* Light lavender on hover */
+            transform: scale(1.05);
         }
-        
-        .user-image {
+
+        .user-image-container {
             width: 120px;
             height: 120px;
             border-radius: 50%;
             border: 5px solid #6f42c1;
-            margin-bottom: 15px;
-            transition: transform 0.3s;
-        }
-
-        .user-image:hover {
-            transform: rotate(360deg);
-        }
-        
-        .username {
-            color: #6f42c1;
-            margin: 10px 0;
-            font-size: 24px;
-            transition: color 0.3s;
-        }
-
-        .email {
-            color: #555;
-            margin-bottom: 15px;
-            font-size: 16px;
-        }
-        
-        .password-container {
-            margin: 15px 0;
+            margin: 15px auto;
+            overflow: hidden;
             position: relative;
-        }
-
-        .password-display {
-            font-family: 'Courier New', monospace;
-            letter-spacing: 3px;
-            background-color: #f2f2f2;
-            padding: 10px;
-            border-radius: 5px;
-            color: #333;
             cursor: pointer;
-            transition: background-color 0.3s;
         }
 
-        .password-display:hover {
-            background-color: #dcd0f8;
+        .user-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
-        .edit-button {
-            background-color: #6f42c1;
+        .form-group {
+            margin: 15px 0;
+            width: 100%;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            font-family: inherit;
+        }
+
+        .form-input::placeholder {
+            color: #aaa;
+        }
+
+        .edit-button, .save-button {
+            background-color: #6f42c1; /* Purple color */
             color: white;
             border: none;
             padding: 12px 20px;
             border-radius: 30px;
             cursor: pointer;
             font-size: 16px;
-            transition: background-color 0.3s, transform 0.2s;
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
-        
-        .edit-button:hover {
-            background-color: #5a34a1;
+
+        .edit-button:hover, .save-button:hover {
+            background-color: #5a34a1; /* Darker purple on hover */
             transform: scale(1.05);
         }
 
+        input[type="file"] {
+            display: none;
+        }
     </style>
-    <title>Dynamic Profile Card</title>
+    <title>Driver Profile</title>
 </head>
 <body>
     <div class="profile-card">
-        <img src="user-image.jpg" alt="User Image" class="user-image">
-        <h2 class="username" id="username">Loading...</h2>
-        <p class="email" id="email">Loading...</p>
-        <div class="password-container">
-            <label>Password:</label>
-            <div class="password-display" id="password-display" onclick="togglePassword()">••••••••</div>
+        <!-- User Image -->
+        <div class="user-image-container" onclick="document.getElementById('imageInput').click();">
+            <img src="{{ d.image.url }}" alt="User Image" class="user-image" id="userImage">
+            <!-- File Input for Uploading Image -->
+            <input type="file" id="imageInput" accept="image/*" onchange="previewImage(event)">
         </div>
-        <button class="edit-button" onclick="editProfile()">Edit Profile</button>
+
+        <!-- Form Fields -->
+        <form id="profileForm" method="POST" onsubmit="return saveChanges();">
+            {% csrf_token %}
+            <!-- Username -->
+            <div class="form-group">
+                <input type="text" class="form-input" id="username" name="username" placeholder="Driver Name" value="{{ d.Username }}" readonly>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+                <input type="email" class="form-input" id="email" name="email" placeholder="Email" value="{{ d.Email }}" readonly>
+            </div>
+
+            <!-- Password -->
+            <div class="form-group">
+                <input type="password" class="form-input" id="password" name="password" placeholder="Password" value="{{ d.Password }}" readonly>
+            </div>
+
+            <!-- Edit Profile Button -->
+            <button type="button" class="edit-button" id="editButton" onclick="enableEditing()">Edit Profile</button>
+            <button type="submit" class="save-button" id="saveButton" style="display: none;">Save Changes</button>
+        </form>
     </div>
 
+    <!-- JavaScript for Image Preview and Edit Functionality -->
     <script>
-        const userData = {
-            username: "John Doe",
-            email: "johndoe@example.com",
-            password: "myp@ssw0rd123"
-        };
-
-        // Populate profile data
-        document.getElementById('username').textContent = userData.username;
-        document.getElementById('email').textContent = userData.email;
-        document.getElementById('password-display').textContent = '•'.repeat(userData.password.length);
-
-        // Toggle password visibility
-        function togglePassword() {
-            const passwordDisplay = document.getElementById('password-display');
-            if (passwordDisplay.textContent.includes('•')) {
-                passwordDisplay.textContent = userData.password;
-            } else {
-                passwordDisplay.textContent = '•'.repeat(userData.password.length);
-            }
+        function previewImage(event) {
+            const reader = new FileReader();
+            reader.onload = function() {
+                const userImage = document.getElementById('userImage');
+                userImage.src = reader.result; // Update image src to preview the new image
+            };
+            reader.readAsDataURL(event.target.files[0]);
         }
 
-        // Edit profile placeholder
-        function editProfile() {
-            alert("Edit feature coming soon!");
+        function enableEditing() {
+            // Enable form fields for editing
+            document.getElementById('username').readOnly = false;
+            document.getElementById('email').readOnly = false;
+            document.getElementById('password').readOnly = false;
+
+            // Show the Save Changes button and hide the Edit Profile button
+            document.getElementById('editButton').style.display = 'none';
+            document.getElementById('saveButton').style.display = 'inline-block';
+        }
+
+        function saveChanges() {
+            // Simulate a form submission and then redirect
+            alert("Changes Saved!"); // Optional alert for feedback
+            window.location.href = '/drhome'; // Redirect to the "drhome" page after saving changes
+            return false; // Prevent actual form submission to allow redirection
         }
     </script>
 </body>
 </html>
+

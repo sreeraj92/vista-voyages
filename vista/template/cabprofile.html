@@ -88,13 +88,13 @@
             display: none;
         }
     </style>
-    <title>Profile Card</title>
+    <title>Cab Profile</title>
 </head>
 <body>
     <div class="profile-card">
         <!-- User Image -->
         <div class="user-image-container" onclick="document.getElementById('imageInput').click();">
-            <img src="{{ re.image.url }}" alt="User Image" class="user-image" id="userImage">
+            <img src="{{ c.image.url }}" alt="User Image" class="user-image" id="userImage">
             <!-- File Input for Uploading Image -->
             <input type="file" id="imageInput" accept="image/*" onchange="previewImage(event)">
         </div>
@@ -102,19 +102,19 @@
         <!-- Form Fields -->
         <form id="profileForm" method="POST" onsubmit="return saveChanges();">
             {% csrf_token %}
-            <!-- Username -->
+            <!-- Cab Username -->
             <div class="form-group">
-                <input type="text" class="form-input" id="username" name="username" placeholder="User Name" value="{{ re.Username }}" readonly>
+                <input type="text" class="form-input" id="username" name="username" placeholder="Cab Driver Name" value="{{ c.Username }}" readonly>
             </div>
 
-            <!-- Email -->
+            <!-- Cab Email -->
             <div class="form-group">
-                <input type="email" class="form-input" id="email" name="email" placeholder="Email" value="{{ re.Email }}" readonly>
+                <input type="email" class="form-input" id="email" name="email" placeholder="Email" value="{{ c.Email }}" readonly>
             </div>
 
-            <!-- Password -->
+            <!-- Cab Password -->
             <div class="form-group">
-                <input type="password" class="form-input" id="password" name="password" placeholder="Password" value="{{ re.Password }}" readonly>
+                <input type="password" class="form-input" id="password" name="password" placeholder="Password" value="{{ c.Password }}" readonly>
             </div>
 
             <!-- Edit Profile Button -->
@@ -148,7 +148,7 @@
         function saveChanges() {
             // Simulate a form submission and then redirect
             alert("Changes Saved!"); // Optional alert for feedback
-            window.location.href = '/uhome'; // Redirect to the "uhome" page after saving changes
+            window.location.href = '/cabhome'; // Redirect to the "cabhome" page after saving changes
             return false; // Prevent actual form submission to allow redirection
         }
     </script>

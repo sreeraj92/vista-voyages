@@ -9,6 +9,7 @@ urlpatterns = [
     path('adprofile',views.adprofile,name="adprofile"),
     path('adlog',views.adlog,name="adlog"),
     path('drlog',views.drlog,name="drlog"),
+    path('drlog',views.drlog,name="rentlog"),
     path('drreg',views.drreg,name="drreg"),
     path('adhome',views.adhome,name="adhome"),
     path('drhome',views.drhome,name="drhome"),
@@ -16,4 +17,6 @@ urlpatterns = [
     path('drbooking',views.drbooking,name="drbooking"),
     path('cabhome',views.cabhome,name="cabhome"),
     path('About',views.About,name="About"),
+    path('cabprofile',views.cabprofile,name="cabprofile"),
 ]
+

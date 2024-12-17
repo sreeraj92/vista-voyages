@@ -54,8 +54,9 @@
 </head>
 <body>
     <h1>Cab Details Form</h1>
-    <form action="#" method="post" enctype="multipart/form-data">
-        <label for="cabType">Cab Type:</label>
+    <form  method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="cabType">CabType:</label>
         <input type="text" id="cabType" name="cabType" required>
 
         <label for="makeModel">Make &amp; Model:</label>

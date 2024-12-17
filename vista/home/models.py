@@ -37,3 +37,4 @@ class about_cab(models.Model):
     Fare_per_Kilometer=models.CharField(max_length=456,null=True)
     Safety_Features=models.CharField(max_length=700,null=True) 
     Availability=models.CharField(max_length=780,null=True)
+    

@@ -40,8 +40,12 @@ def uhome(request):
 def profile(request):
     re = User_registration.objects.get(id=request.session['id'])
     if request.method=="POST":
-        re.Username=request.POST.get("Username")
-        re.Email=request.POST.get("Email")
+        if len(request.FILES)!=0:
+            if len(r.img)>0:
+                os.remove(r.img.path)
+                r.img=request.FILES['img']
+        re.Username=request.POST.get("username")
+        re.Email=request.POST.get("email")
         re.Password=request.POST.get("password")
         re.save()
     return render(request,'profile.html',{'re':re})
@@ -61,13 +65,6 @@ def adlog(request):
 def adhome(request):
     return render (request,'adhome.html')
 def adprofile(request):    
-    e= User_registration.get(id=request.session['id'])
-    if request.method=="POST":
-         if len(request.FILES)!=0:
-            e.Images = request.POST.get("Images")
-            e.Email = request.POST.get("Email")
-            e.Password = request.POST.get("password")
-            e.save()
             return render(request,"adprofile.html")
 def drlog(request):
     if request.method=="POST":
@@ -116,11 +113,17 @@ def drhome(request):
 def drbooking(request):
     return render (request,"drbooking.html")
 def drprofile(request):
+    d= driver_registration.objects.get(id=request.session['id'])
+    if request.method=="POST":
+        d.Username=request.POST.get("Username")
+        d.Email=request.POST.get("Email")
+        d.Password=request.POST.get("password")
+        d.save()
     return render(request,"drprofile.html")
 def cabhome(request):
     return render(request,'cabhome.html')
 def About(request):
-     if request.method=="POST":
+    if request.method=="POST":
         Cab_Type=request.POST.get("cabType")
         Make_Model=request.POST.get("makeModel")
         Registration_Number=request.POST.get("registrationNumber")
@@ -133,4 +136,24 @@ def About(request):
         Fare_per_Kilometer=request.POST.get("farePerKm")
         Safety_Features=request.POST.get("safetyFeatures")           
         Availability=request.POST.get("availability")
-     return render(request,"About.html")
+        data=about_cab(Cab_Type=Cab_Type,Make_Model=Make_Model,Registration_Number=Registration_Number,Color=Color,vehicle_image=vehicle_image,Driver_Name=Driver_Name,Driver_Contact=Driver_Contact,Seating_Capacity=Seating_Capacity,Base_Fare=Base_Fare,Fare_per_Kilometer=Fare_per_Kilometer,Safety_Features=Safety_Features,Availability=Availability)  
+        data.save()
+    return render(request,"About.html")
+def cabprofile(request):
+    c= driver_registration.objects.get(id=request.session['id'])
+    if request.method=="POST":
+        c.Username=request.POST.get("Username")
+        c.Email=request.POST.get("Email")
+        c.Password=request.POST.get("password")
+        c.save()
+    return render(request,'cabprofile.html',{'c':c})
+def drprofile(request):
+    d= driver_registration.objects.get(id=request.session['id'])
+    if request.method=="POST":
+        d.Username=request.POST.get("Username")
+        d.Email=request.POST.get("Email")
+        d.Password=request.POST.get("password")
+        d.save()
+    return render(request,'drprofile.html',{'d':d})
+def rentlog(request):
+    return render (request,'rentlog.html')
