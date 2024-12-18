@@ -3,15 +3,13 @@
 <html lang="en">
 
 <head>
-    <title>Cab Rental Registration - Ecoland</title>
+    <title>Ecoland - Registration Page</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <!-- Google Fonts -->
+
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-    <!-- CSS Stylesheets -->
     <link rel="stylesheet" href="{% static 'css/open-iconic-bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/animate.css' %}">
     <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
@@ -22,8 +20,8 @@
     <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
     <link rel="stylesheet" href="{% static 'css/icomoon.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    
-    <!-- Font Awesome -->
+
+    <!-- Include Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
@@ -122,126 +120,43 @@
 <body>
     <div class="registration">
         <div class="form-container">
-            <form class="bg-light contact-form" method="POST" enctype="multipart/form-data">
+            <form class="bg-light contact-form" onsubmit="return confirmRegistration();" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 {% for msg in messages %}
                     <h4 style="color:red">{{ msg }}</h4>
                 {% endfor %}
-
-                <!-- Vehicle Information Section -->
-                <h3>Cab Rental Registration</h3>
-
-                <!-- Vehicle Registration Number -->
+                <!-- Username -->
                 <div class="form-group input-with-icon">
-                    <input type="text" class="form-control" name="vehicle_reg_number" placeholder="Vehicle Registration Number" required>
-                    <i class="fas fa-car user-icon" aria-hidden="true"></i>
-                </div>
-
-                <!-- Vehicle Type -->
-                <div class="form-group">
-                    <select class="form-control" name="vehicle_type" required>
-                        <option value="" disabled selected>Select Vehicle Type</option>
-                        <option value="Sedan">Sedan</option>
-                        <option value="SUV">SUV</option>
-                        <option value="Van">Van</option>
-                        <option value="Truck">Truck</option>
-                        <option value="Hatchback">Hatchback</option>
-                        <option value="Convertible">Convertible</option>
-                        <option value="Minivan">Minivan</option>
-                        <option value="Luxury">Luxury</option>
-                        <option value="Electric">Electric</option>
-                        <option value="Hybrid">Hybrid</option>
-                        <option value="Pickup">Pickup</option>
-                        <option value="Coupe">Coupe</option>
-                    </select>
-                </div>
-
-                <!-- Make and Model -->
-                <div class="form-group">
-                    <input type="text" class="form-control" name="make_model" placeholder="Make/Model of Vehicle" required>
-                </div>
-
-                <!-- Year of Manufacture -->
-                <div class="form-group">
-                    <input type="number" class="form-control" name="year_of_manufacture" placeholder="Year of Manufacture" required>
-                </div>
-
-                <!-- Fuel Type -->
-                <div class="form-group">
-                    <select class="form-control" name="fuel_type" required>
-                        <option value="" disabled selected>Select Fuel Type</option>
-                        <option value="Petrol">Petrol</option>
-                        <option value="Diesel">Diesel</option>
-                        <option value="Electric">Electric</option>
-                    </select>
-                </div>
-
-                <!-- Transmission Type -->
-                <div class="form-group">
-                    <select class="form-control" name="transmission_type" required>
-                        <option value="" disabled selected>Select Transmission Type</option>
-                        <option value="Automatic">Automatic</option>
-                        <option value="Manual">Manual</option>
-                    </select>
-                </div>
-
-                <!-- Mileage -->
-                <div class="form-group">
-                    <input type="number" class="form-control" name="mileage" placeholder="Mileage (km)" required>
-                </div>
-
-                <!-- Engine Capacity -->
-                <div class="form-group">
-                    <input type="text" class="form-control" name="engine_capacity" placeholder="Engine Capacity (L)" required>
-                </div>
-
-                <!-- Rental Price -->
-                <div class="form-group">
-                    <input type="number" class="form-control" name="rental_price_per_day" placeholder="Rental Price per Day (in INR)" required>
-                </div>
-
-                <!-- Vehicle Availability -->
-                <div class="form-group">
-                    <label for="availability">Is your vehicle available for rental?</label><br>
-                    <input type="radio" name="availability" value="Yes" required> Yes
-                    <input type="radio" name="availability" value="No"> No
-                </div>
-
-                <!-- Vehicle Image -->
-                <div class="form-group">
-                    <label for="vehicle-image">Upload Vehicle Image</label>
-                    <input type="file" id="vehicle-image" name="vehicle_image" class="form-control" accept="image/*" required>
-                </div>
-
-                <!-- Owner Details Section -->
-                <h3>Owner Details</h3>
-
-                <!-- Owner Name -->
-                <div class="form-group input-with-icon">
-                    <input type="text" class="form-control" name="owner_name" placeholder="Full Name" required>
+                    <input type="text" class="form-control" name="Username" placeholder="Username" required>
                     <i class="fas fa-user user-icon" aria-hidden="true"></i>
+                </div>
+
+                <!-- Age -->
+                <div class="form-group input-with-icon">
+                    <input type="number" class="form-control" name="Age" placeholder="Age" min="18" max="100" required>
+                    <i class="fas fa-birthday-cake user-icon" aria-hidden="true"></i>
                 </div>
 
                 <!-- Email -->
                 <div class="form-group input-with-icon">
-                    <input type="email" class="form-control" name="email" placeholder="Email" required>
+                    <input type="email" class="form-control" name="Email" placeholder="Email" required>
                     <i class="fas fa-envelope email-icon" aria-hidden="true"></i>
                 </div>
 
                 <!-- Phone Number -->
                 <div class="form-group input-with-icon">
-                    <input type="tel" class="form-control" name="phone" placeholder="Phone Number" pattern="[0-9]{10}" required>
+                    <input type="tel" class="form-control" name="Phone" placeholder="Phone Number" pattern="[0-9]{10}" required>
                     <i class="fas fa-phone user-icon" aria-hidden="true"></i>
                 </div>
 
                 <!-- Address -->
                 <div class="form-group">
-                    <textarea class="form-control" name="address" rows="3" placeholder="Address" required></textarea>
+                    <textarea class="form-control" name="Address" rows="3" placeholder="Address" required></textarea>
                 </div>
 
                 <!-- State -->
                 <div class="form-group">
-                    <select class="form-control" name="state" required>
+                    <select class="form-control" name="State" required>
                         <option value="" disabled selected>Select State</option>
                         <option value="Andhra Pradesh">Andhra Pradesh</option>
                         <option value="Arunachal Pradesh">Arunachal Pradesh</option>
@@ -271,30 +186,114 @@
                         <option value="Uttar Pradesh">Uttar Pradesh</option>
                         <option value="Uttarakhand">Uttarakhand</option>
                         <option value="West Bengal">West Bengal</option>
+                        <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                        <option value="Chandigarh">Chandigarh</option>
+                        <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
+                        <option value="Lakshadweep">Lakshadweep</option>
+                        <option value="Delhi">Delhi</option>
+                        <option value="Puducherry">Puducherry</option>
                     </select>
                 </div>
 
                 <!-- Aadhar Card -->
                 <div class="form-group input-with-icon">
-                    <input type="text" class="form-control" name="aadhar" placeholder="Aadhar Card Number" required>
+                    <input type="text" class="form-control" name="Aadhar" placeholder="Aadhar Card Number" required>
                     <i class="fas fa-id-card user-icon" aria-hidden="true"></i>
                 </div>
 
-                <!-- License Image -->
+                <!-- Experience -->
+                <div class="form-group">
+                    <textarea class="form-control" name="Experience" rows="3" placeholder="Briefly Describe Your Experience"></textarea>
+                </div>
+
+                <!-- Profile Image -->
+                <div class="form-group">
+                    <label for="photo-upload" style="display: block; text-align: left;">Upload Profile Image</label>
+                    <input type="file" id="photo-upload" name="image" class="form-control" accept="image/*" required>
+                </div>
+
+                <!-- Driver's License Image -->
                 <div class="form-group">
                     <label for="license-upload" style="display: block; text-align: left;">Upload Driver's License Image</label>
-                    <input type="file" id="license-upload" name="license_image" class="form-control" accept="image/*" required>
+                    <input type="file" id="license-upload" name="LicenseImage" class="form-control" accept="image/*" required>
+                </div>
+
+                <!-- Password -->
+                <div class="form-group input-with-icon">
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+                    <i class="fas fa-eye toggle-password" onclick="togglePassword()" aria-hidden="true"></i>
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="form-group input-with-icon">
+                    <input type="password" id="confirm-password" name="confirm_password" class="form-control" placeholder="Confirm Password" required>
+                    <i class="fas fa-eye toggle-confirm-password" onclick="toggleConfirmPassword()" aria-hidden="true"></i>
+                </div>
+                <div class="error-message" id="password-error">Passwords do not match!</div>
+
+                <!-- Terms and Conditions -->
+                <div class="form-group" style="text-align: left;">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="terms"> I agree to the terms and conditions
+                    </label>
                 </div>
 
                 <!-- Submit Button -->
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-block">Register Your Cab for Rental</button>
+                    <input type="submit" value="Register" class="btn btn-primary py-3 px-5">
                 </div>
+
+                <!-- Login Link -->
+                <a href="drlog" class="register-link">Already have an account? Log In</a>
             </form>
         </div>
     </div>
+
+    <script>
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const togglePasswordIcon = document.querySelector('.toggle-password');
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                togglePasswordIcon.classList.remove('fa-eye');
+                togglePasswordIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = "password";
+                togglePasswordIcon.classList.remove('fa-eye-slash');
+                togglePasswordIcon.classList.add('fa-eye');
+            }
+        }
+
+        function toggleConfirmPassword() {
+            const confirmPasswordInput = document.getElementById('confirm-password');
+            const toggleConfirmPasswordIcon = document.querySelector('.toggle-confirm-password');
+            if (confirmPasswordInput.type === "password") {
+                confirmPasswordInput.type = "text";
+                toggleConfirmPasswordIcon.classList.remove('fa-eye');
+                toggleConfirmPasswordIcon.classList.add('fa-eye-slash');
+            } else {
+                confirmPasswordInput.type = "password";
+                toggleConfirmPasswordIcon.classList.remove('fa-eye-slash');
+                toggleConfirmPasswordIcon.classList.add('fa-eye');
+            }
+        }
+
+        function confirmRegistration() {
+            const termsAccepted = document.getElementById('terms').checked;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            if (!termsAccepted) {
+                alert('You must agree to the terms and conditions.');
+                return false;
+            }
+            if (password !== confirmPassword) {
+                document.getElementById('password-error').style.display = 'block';
+                return false;
+            }
+            return true;
+        }
+    </script>
 </body>
 
 </html>
-
 

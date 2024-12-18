@@ -37,4 +37,32 @@ class about_cab(models.Model):
     Fare_per_Kilometer=models.CharField(max_length=456,null=True)
     Safety_Features=models.CharField(max_length=700,null=True) 
     Availability=models.CharField(max_length=780,null=True)
+
+
+# Vehicle Model
+class Vehicle(models.Model):
+    vehicle_reg_number = models.CharField(max_length=20, unique=True,null=True)
+    vehicle_type = models.CharField(max_length=20,null=True)
+    make_model = models.CharField(max_length=100,null=True)
+    year_of_manufacture = models.PositiveIntegerField(null=True)
+    fuel_type = models.CharField(max_length=10,null=True)
+    transmission_type = models.CharField(max_length=10,null=True)
+    mileage = models.PositiveIntegerField(help_text="Mileage in kilometers",null=True)
+    engine_capacity = models.CharField(max_length=10, help_text="Engine capacity in liters",null=True)
+    rental_price_per_day = models.DecimalField(max_digits=10, decimal_places=2,null=True)
+    availability = models.BooleanField(default=True,null=True)
+    vehicle_image = models.ImageField(upload_to='vehicleimg',null=True)
+class rental_registration(models.Model):
+    Username=models.CharField(max_length=50,null=True)
+    Email=models.CharField(max_length=50,null=True)
+    Password=models.CharField(max_length=40,null=True)
+    image=models.ImageField(upload_to='dpimg',null=True)
+    Age=models.CharField(max_length=10,null=True)
+    Phone=models.CharField(max_length=15,null=True)
+    Address=models.CharField(max_length=100,null=True)
+    State=models.CharField(max_length=100,null=True)
+    Aadhar=models.CharField(max_length=25,null=True)
+    Experience=models.CharField(max_length=200,null=True)
+    Roles=models.CharField(max_length=200,null=True)
+    LicenseImage=models.ImageField(upload_to='License',null=True)
     
