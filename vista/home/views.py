@@ -6,6 +6,33 @@ import os
 # Create your views here.
 def index(request):
     return render(request,'index.html')
+
+def hotel(request):
+    return render(request,'hotel.html')
+
+def single(request):
+    return render(request,'single.html')
+
+def hotelsingle(request):
+    return render(request,'hotelsingle.html')    
+
+def user(request):
+    return render(request,'user.html') 
+
+def drive(request):
+    return render(request, 'drive.html')
+    
+def hotelreg(request):
+    return render(request, 'hotelreg.html')
+
+def reshotel(request):
+    return render(request, 'reshotel.html')
+
+def cab(request):
+    return render(request, 'cab.html')
+
+def driver(request):
+    return render(request, 'driver.html') 
 def login(request):
     if request.method=="POST":
         try:
@@ -36,7 +63,10 @@ def register(request):
             messages.info(request,'Passwords do not match')
     return render(request,'register.html')
 def uhome(request):
-    return render (request,'uhome.html')
+    re = User_registration.objects.get(id=request.session['id'])
+
+    return render (request,'uhome.html',{'re':re})
+
 def profile(request):
     re = User_registration.objects.get(id=request.session['id'])
     if request.method=="POST":
@@ -49,24 +79,9 @@ def profile(request):
         re.Password=request.POST.get("password")
         re.save()
     return render(request,'profile.html',{'re':re})
-def adlog(request):
-    if request.method=="POST":
-        try:
-            email=request.POST.get("Email")
-            password=request.POST.get("password")
-            logindata=admin_login.objects.get(Email=email,Password=password)
-            request.session['email']=logindata.Email
-            request.session['id']=logindata.id
-            return redirect('adhome')
-        except admin_login.DoesNotExist as e:
-            messages.info(request,'incorrect password or email')
 
-    return render(request,'adlog.html')
-def adhome(request):
-    return render (request,'adhome.html')
-def adprofile(request):    
-            return render(request,"adprofile.html")
-def drlog(request):
+
+def drive(request):
     if request.method=="POST":
         try:
             email=request.POST.get("Email")
@@ -82,7 +97,7 @@ def drlog(request):
                 return redirect('drhome')
         except driver_registration.DoesNotExist as e:
             messages.info(request,'incorrect password or email')
-    return render(request,'drlog.html')
+    return render(request,'drive.html')
 def drreg(request):
     if request.method=="POST":
         username=request.POST.get("Username")
@@ -157,3 +172,22 @@ def drprofile(request):
     return render(request,'drprofile.html',{'d':d})
 def rentlog(request):
     return render (request,'rentlog.html')
+
+# ************************************************************ADMIN**************************************
+def signin(request):
+    if request.method=="POST":
+        try:
+            email=request.POST.get("Email")
+            password=request.POST.get("password")
+            logindata=admin_login.objects.get(Email=email,Password=password)
+            request.session['email']=logindata.Email
+            request.session['id']=logindata.id
+            return redirect('adhome')
+        except admin_login.DoesNotExist as e:
+            messages.info(request,'incorrect password or email')
+    return render(request,'padmin/signin.html')
+
+def adhome(request):
+    return render (request,'padmin/adhome.html')
+def adprofile(request):    
+            return render(request,"padmin/adprofile.html")

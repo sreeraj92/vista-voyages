@@ -108,7 +108,7 @@
 <body>
     <div class="login">
         <div class="form-container">
-            <form  class="bg-light contact-form" onsubmit="return confirmLogin();"method="POST" enctype="multipart/form-data">
+            <form  class="bg-light contact-form" onsubmit="return confirmLogin();"method="POST" enctype="multipart/form-data">>
                 {% csrf_token %}
                 {%for msg in messages %}
                       <h4 style="color:red">{{msg}}</h4>

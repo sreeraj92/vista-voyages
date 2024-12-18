@@ -8,8 +8,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            background-image: url('../static/images/green.jpg');
             height: 100vh;
-            background-color: #fde4ff;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             overflow: hidden;
@@ -34,20 +34,18 @@
         }
 
         .user-image-container {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            border: 5px solid #6f42c1;
-            margin: 15px auto;
-            overflow: hidden;
-            position: relative;
-            cursor: pointer;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            margin: auto;
+            text-align: center;
+            border-radius:15px;
         }
 
         .user-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            border-radius:15px;
         }
 
         .form-group {
@@ -59,7 +57,7 @@
             width: 100%;
             padding: 10px;
             border: 1px solid #ddd;
-            border-radius: 5px;
+            border-radius: 50px;
             font-size: 16px;
             font-family: inherit;
         }
@@ -90,7 +88,7 @@
     </style>
     <title>Profile Card</title>
 </head>
-<body>
+<body background="">
     <div class="profile-card">
         <!-- User Image -->
         <div class="user-image-container" onclick="document.getElementById('imageInput').click();">
