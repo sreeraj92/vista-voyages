@@ -179,18 +179,14 @@ def drprofile(request):
         d.save()
     return render(request,'drprofile.html',{'d':d})
 def rentlog(request):
-<<<<<<< HEAD
     return render (request,'rentlog.html')
 
 # ************************************************************ADMIN**************************************
 def signin(request):
-=======
->>>>>>> f7bda40ea21984c09d45e11c6b5e1f3a83236649
     if request.method=="POST":
         try:
             email=request.POST.get("Email")
             password=request.POST.get("password")
-<<<<<<< HEAD
             logindata=admin_login.objects.get(Email=email,Password=password)
             request.session['email']=logindata.Email
             request.session['id']=logindata.id
@@ -211,7 +207,6 @@ def hotels(request):
             return render(request,"admin/hotels.html")    
 def adprofile(request):    
             return render(request,"adprofile.html")
-=======
             logindata=rental_registration.objects.get(Email=email,Password=password)
             request.session['email']=logindata.Email
             request.session['id']=logindata.id
@@ -257,4 +252,3 @@ def rentprofile(request):
         rp.Password=request.POST.get("password")
         rp.save()
     return render(request,'rentprofile.html',{'rp':rp})
->>>>>>> f7bda40ea21984c09d45e11c6b5e1f3a83236649
