@@ -30,6 +30,8 @@ def reshotel(request):
 
 def cab(request):
     return render(request, 'cab.html')
+def adlog(request):
+    return render(request, 'adlog.html')
 
 def driver(request):
     return render(request, 'driver.html') 
@@ -125,6 +127,8 @@ def drreg(request):
     return render(request,'drreg.html')
 def drhome(request):
     return render (request,'drhome.html')
+def drlog(request):
+    return render (request,'drlog.html')
 def drbooking(request):
     return render (request,"drbooking.html")
 def drprofile(request):
@@ -178,8 +182,7 @@ def drprofile(request):
         d.Password=request.POST.get("password")
         d.save()
     return render(request,'drprofile.html',{'d':d})
-def rentlog(request):
-    return render (request,'rentlog.html')
+
 
 # ************************************************************ADMIN**************************************
 def signin(request):
@@ -187,6 +190,7 @@ def signin(request):
         try:
             email=request.POST.get("Email")
             password=request.POST.get("password")
+
             logindata=admin_login.objects.get(Email=email,Password=password)
             request.session['email']=logindata.Email
             request.session['id']=logindata.id
@@ -207,11 +211,16 @@ def hotels(request):
             return render(request,"admin/hotels.html")    
 def adprofile(request):    
             return render(request,"adprofile.html")
+def rentlog(request):
+    if request.method=="POST":
+        try:
+            email=request.POST.get("Email")
+            password=request.POST.get("password")
             logindata=rental_registration.objects.get(Email=email,Password=password)
             request.session['email']=logindata.Email
             request.session['id']=logindata.id
             return redirect('renthome')
-        except rental_registration.DoesNotExist:
+        except rental_registration.DoesNotExist as e:
             messages.info(request,'incorrect password or email')
     return render(request,'rentlog.html')
 def rentreg(request):

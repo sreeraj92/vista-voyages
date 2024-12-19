@@ -1,1 +1,36 @@
 .env
+# Byte-compiled files
+*.pyc
+*.pyo
+__pycache__/
+
+
+
+# Django static files
+/static/
+!/static/.gitkeep
+
+# Local development files
+/db.sqlite3
+*.log
+
+# Virtual environments
+venv/
+env/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*~
+
+# macOS specific
+.DS_Store
+
+# Other OS specific
+Thumbs.db
+
+# Allow migration Python files explicitly
+!*/migrations/*.py
+
+*/migrations/__pycache__/
