@@ -211,7 +211,7 @@ def adprofile(request):
             request.session['email']=logindata.Email
             request.session['id']=logindata.id
             return redirect('renthome')
-        except rental_registration.DoesNotExist as e:
+        except rental_registration.DoesNotExist:
             messages.info(request,'incorrect password or email')
     return render(request,'rentlog.html')
 def rentreg(request):
