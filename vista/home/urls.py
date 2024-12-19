@@ -35,7 +35,10 @@ urlpatterns = [
     # path('adlog',views.adlog,name="adlog"),
     path('adhome',views.adhome,name="adhome"),
     path('adprofile',views.adprofile,name="adprofile"),
-
+    path('transport',views.transport,name="transport"),
+    path('chart',views.chart,name="chart"),
+    path('restaurants',views.restaurants,name="restaurants"),
+    path('hotels',views.hotels,name="hotels"),
 
 ]
 

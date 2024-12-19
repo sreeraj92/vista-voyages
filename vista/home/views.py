@@ -189,5 +189,13 @@ def signin(request):
 
 def adhome(request):
     return render (request,'padmin/adhome.html')
+def transport(request):
+    return render (request,'admin/transport.html')
+def chart(request):
+    return render (request,'admin/chart.html')
+def restaurants(request):    
+            return render(request,"admin/restaurants.html")    
+def hotels(request):    
+            return render(request,"admin/hotels.html")    
 def adprofile(request):    
-            return render(request,"padmin/adprofile.html")
+            return render(request,"adprofile.html")

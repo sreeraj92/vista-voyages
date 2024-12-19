@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <title>Ecoland - Free Bootstrap 4 Template by Colorlib</title>
+    <meta charset="utf-8">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/open-iconic-bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %} ">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %} ">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %} ">
+
+    <link rel="stylesheet" href="{% static 'css/aos.css' %} ">
+
+    <link rel="stylesheet" href="{% static 'css/ionicons.min.css' %} ">
+    
+    <link rel="stylesheet" href="{% static 'css/flaticon.css' %} ">
+    <link rel="stylesheet" href="{% static 'css/icomoon.css' %} ">
+    <link rel="stylesheet" href="{% static 'css/style.css' %} ">
+	<style>
+		.logo{
+			height: 100px;
+			width: 240px;
+		}
+        /* Partial Blur for Navigation Links */
+.nav-item .nav-link {
+    position: relative; /* Ensures pseudo-element is positioned relative to the text */
+    color: #ffffff; /* Text color */
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 5px 10px;
+}
+
+.nav-item .nav-link::before {
+    content: ""; /* Empty content for the background */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white; /* Semi-transparent background */
+    backdrop-filter: blur(10px); /* Blur effect for background */
+    -webkit-backdrop-filter: blur(10px); /* Safari compatibility */
+    z-index: -1; /* Places the background behind the text */
+    border-radius: 50px; /* Optional: Rounded edges for better styling */
+}
+
+.nav-item .nav-link:hover {
+    color: white; /* Optional: Change text color on hover */
+}
+</style>
+  </head>
+  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+    <nav class="navbar"><nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
+	    <div class="container">
+	      <a class="navbar-brand" href="index.html"><img class="logo" src="{% static 'images/vv.png' %}" style="border-radius: 10px;">
+		  </a>
+	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
+
+	      <div class="collapse navbar-collapse" id="ftco-nav" >
+	        <ul class="navbar-nav nav ml-auto">
+	          <li class="nav-item"><a href="index.html" class="nav-link"><span>Home</span></a></li>
+	        </ul>
+	      </div>
+	    </div>
+	  </nav>
+	</nav>
+  <div class="container mt-4"><br><br><br><br>
+    <div class="row">
+      <!-- Card 1 -->
+      <div class="col-3 mb-4"><a href="drive.html">
+        <div class="card" style="width: 100%; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);">
+          <img src="https://via.placeholder.com/150" class="card-img-top" alt="Card 1" style="height: 120px; object-fit: cover;">
+          <div class="card-body">
+            <h6 class="card-title">Driver1</h6>
+            <p class="card-text small">Discover stunning landscapes with us.</p>
+          </div>
+        </div>
+      </div></a>
+      <!-- Card 2 -->
+      <div class="col-3 mb-4"><a href="drive.html">
+        <div class="card" style="width: 100%; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);">
+          <img src="https://via.placeholder.com/150" class="card-img-top" alt="Card 2" style="height: 120px; object-fit: cover;">
+          <div class="card-body">
+            <h6 class="card-title">Driver2</h6>
+            <p class="card-text small">Travel sustainably and responsibly.</p>
+          </div>
+        </div></a>
+      </div>
+      <!-- Card 3 -->
+      <div class="col-3 mb-4"><a href="drive.html">
+        <div class="card" style="width: 100%; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);">
+          <img src="https://via.placeholder.com/150" class="card-img-top" alt="Card 3" style="height: 120px; object-fit: cover;">
+          <div class="card-body">
+            <h6 class="card-title">Driver3</h6>
+            <p class="card-text small">Exciting activities for everyone.</p>
+          </div>
+        </div></a>
+      </div>
+      <!-- Card 4 -->
+      <div class="col-3 mb-4"><a href="drive.html">
+        <div class="card" style="width: 100%; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);">
+          <img src="https://via.placeholder.com/150" class="card-img-top" alt="Card 4" style="height: 120px; object-fit: cover;">
+          <div class="card-body">
+            <h6 class="card-title">Driver4</h6>
+            <p class="card-text small">Trained guides for your safety.</p>
+          </div>
+        </div></a>
+      </div>
+      <!-- Card 5 -->
+      <div class="col-3 mb-4"><a href="drive.html">
+        <div class="card" style="width: 100%; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);">
+          <img src="https://via.placeholder.com/150" class="card-img-top" alt="Card 5" style="height: 120px; object-fit: cover;">
+          <div class="card-body">
+            <h6 class="card-title">Driver5</h6>
+            <p class="card-text small">Budget-friendly travel options.</p>
+          </div>
+        </div></a>
+      </div>
+    </div>
+  </div>
+  
+</section>
+	  <footer class="ftco-footer ftco-section">
+		<div class="container">
+		  <div class="row mb-5">
+			<div class="col-md">
+			  <div class="ftco-footer-widget mb-4">
+				<h2 class="ftco-heading-2">About <span><a href="index.html">Ecoland</a></span></h2>
+				<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+				<ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+				  <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+				  <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+				  <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+				</ul>
+			  </div>
+			</div>
+			<div class="col-md">
+			  <div class="ftco-footer-widget mb-4 ml-md-4">
+				<h2 class="ftco-heading-2">Information</h2>
+				<ul class="list-unstyled">
+				  <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Online Enquiry</a></li>
+				  <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>General Enquiry</a></li>
+				  <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Booking</a></li>
+				  <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Privacy</a></li>
+				  <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Refund Policy</a></li>
+				  <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Call Us</a></li>
+				</ul>
+			  </div>
+			</div>
+			<div class="col-md">
+			  <div class="ftco-footer-widget mb-4">
+				<h2 class="ftco-heading-2">Experience</h2>
+				<ul class="list-unstyled">
+				  <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Adventure</a></li>
+				  <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Hotel and Restaurant</a></li>
+				  <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Beach</a></li>
+				  <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Nature</a></li>
+				  <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Camping</a></li>
+				  <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Party</a></li>
+				</ul>
+			  </div>
+			</div>
+			<div class="col-md">
+			  <div class="ftco-footer-widget mb-4">
+				<h2 class="ftco-heading-2">Have a Questions?</h2>
+				<div class="block-23 mb-3">
+				  <ul>
+					<li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
+					<li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
+					<li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
+				  </ul>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		  <div class="row">
+			<div class="col-md-12 text-center">
+			  <p>&copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
+			</div>
+		  </div>
+		</div>
+	  </footer>
+	  
+	  <!-- loader -->
+	  <div id="ftco-loader" class="show fullscreen">
+		<svg class="circular" width="48px" height="48px">
+		  <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/>
+		  <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/>
+		</svg>
+	  </div>
+	  
+	  <script src="{% static 'js/jquery.min.js' %}"></script>
+	  <script src="{% static 'js/jquery-migrate-3.0.1.min.js' %}"></script>
+	  <script src="{% static 'js/popper.min.js' %}"></script>
+	  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+	  <script src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+	  <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+	  <script src="{% static 'js/jquery.stellar.min.js' %}"></script>
+	  <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+	  <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+	  <script src="{% static 'js/aos.js' %}"></script>
+	  <script src="{% static 'js/jquery.animateNumber.min.js' %}"></script>
+	  <script src="{% static 'js/scrollax.min.js' %}"></script>
+	  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+	  <script src="{% static 'js/google-map.js' %}"></script>
+	  
+	  <script src="{% static 'js/main.js' %}"></script>
+	  
+	  </body>
+	  </html>
+	  

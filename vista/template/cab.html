@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cab Booking</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{% url 'index' %}">EcoVoyage</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Home</a></li>
+                <li class="nav-item active"><a class="nav-link" href="drlog.html">Book a Cab</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Cab Booking Form -->
+    <section class="container mt-5">
+        <h1 class="text-center mb-4">Driver Details</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <form method="POST" action="drive.html">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" name="name" id="name" class="form-control" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="text" name="phone" id="phone" class="form-control" placeholder="Enter your phone number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pickup_location">Pickup Location</label>
+                        <input type="text" name="pickup_location" id="pickup_location" class="form-control" placeholder="Enter pickup location" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="drop_location">Drop Location</label>
+                        <input type="text" name="drop_location" id="drop_location" class="form-control" placeholder="Enter drop location" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Booking Date</label>
+                        <input type="date" name="date" id="date" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="time">Booking Time</label>
+                        <input type="time" name="time" id="time" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cab_type">Cab Type</label>
+                        <select name="cab_type" id="cab_type" class="form-control" required>
+                            <option value="Standard">Standard</option>
+                            <option value="Premium">Premium</option>
+                            <option value="SUV">SUV</option>
+                            <option value="Luxury">Luxury</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Book Now</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3 mt-5">
+        <p>&copy; 2024 EcoVoyage. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>
