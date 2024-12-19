@@ -71,9 +71,9 @@ def profile(request):
     re = User_registration.objects.get(id=request.session['id'])
     if request.method=="POST":
         if len(request.FILES)!=0:
-            if len(r.img)>0:
-                os.remove(r.img.path)
-                r.img=request.FILES['img']
+            if len(re.img)>0:
+                os.remove(re.img.path)
+                re.img=request.FILES['img']
         re.Username=request.POST.get("username")
         re.Email=request.POST.get("email")
         re.Password=request.POST.get("password")
@@ -157,6 +157,10 @@ def About(request):
 def cabprofile(request):
     c= driver_registration.objects.get(id=request.session['id'])
     if request.method=="POST":
+        if len(request.FILES)!=0:
+            if len(c.image)>0:
+                os.remove(c.image.path)
+                c.image=request.FILES['image']
         c.Username=request.POST.get("Username")
         c.Email=request.POST.get("Email")
         c.Password=request.POST.get("password")
@@ -165,20 +169,28 @@ def cabprofile(request):
 def drprofile(request):
     d= driver_registration.objects.get(id=request.session['id'])
     if request.method=="POST":
+        if len(request.FILES)!=0:
+            if len(d.image)>0:
+                os.remove(d.image.path)
+                d.image=request.FILES['image']
         d.Username=request.POST.get("Username")
         d.Email=request.POST.get("Email")
         d.Password=request.POST.get("password")
         d.save()
     return render(request,'drprofile.html',{'d':d})
 def rentlog(request):
+<<<<<<< HEAD
     return render (request,'rentlog.html')
 
 # ************************************************************ADMIN**************************************
 def signin(request):
+=======
+>>>>>>> f7bda40ea21984c09d45e11c6b5e1f3a83236649
     if request.method=="POST":
         try:
             email=request.POST.get("Email")
             password=request.POST.get("password")
+<<<<<<< HEAD
             logindata=admin_login.objects.get(Email=email,Password=password)
             request.session['email']=logindata.Email
             request.session['id']=logindata.id
@@ -199,3 +211,50 @@ def hotels(request):
             return render(request,"admin/hotels.html")    
 def adprofile(request):    
             return render(request,"adprofile.html")
+=======
+            logindata=rental_registration.objects.get(Email=email,Password=password)
+            request.session['email']=logindata.Email
+            request.session['id']=logindata.id
+            return redirect('renthome')
+        except rental_registration.DoesNotExist as e:
+            messages.info(request,'incorrect password or email')
+    return render(request,'rentlog.html')
+def rentreg(request):
+    if request.method=="POST":
+        username=request.POST.get("Username")
+        email=request.POST.get("Email")
+        password=request.POST.get("password")
+        confirm_password=request.POST.get("confirm_password")
+        image=request.FILES.get("image")
+        Age=request.POST.get("Age")
+        Phone=request.POST.get("Phone")
+        Address=request.POST.get("Address")
+        State=request.POST.get("State")
+        Aadhar=request.POST.get("Aadhar")
+        Experience=request.POST.get("Experience")
+        LicenseImage=request.FILES.get("LicenseImage")
+        if password==confirm_password:
+            if rental_registration.objects.filter(Email=email).exists():
+                messages.info(request,'Email already exists')
+            else:
+                data=rental_registration(Username=username,Password=password,Email=email,image=image,Age=Age,Phone=Phone,Address=Address,State=State,Aadhar=Aadhar,Experience=Experience,LicenseImage=LicenseImage)  
+                data.save()
+                return redirect('rentlog')
+        else:
+            messages.info(request,'Passwords do not match')
+    return render(request,'rentreg.html')
+def renthome(request):
+    return render (request,'renthome.html')
+def rentprofile(request):
+    rp= rental_registration.objects.get(id=request.session['id'])
+    if request.method=="POST":
+        if len(request.FILES)!=0:
+            if len(rp.image)>0:
+                os.remove(rp.image.path)
+                rp.image=request.FILES['image']
+        rp.Username=request.POST.get("Username")
+        rp.Email=request.POST.get("Email")
+        rp.Password=request.POST.get("password")
+        rp.save()
+    return render(request,'rentprofile.html',{'rp':rp})
+>>>>>>> f7bda40ea21984c09d45e11c6b5e1f3a83236649
